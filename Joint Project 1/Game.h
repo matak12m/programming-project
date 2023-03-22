@@ -23,6 +23,12 @@ class Game
 public:
 	sf::Font m_font;  // font for writing text
 	sf::Text m_message;  // text to write on the screen
+	sf::Texture
+		fenceTexture,
+		groundTexture;
+	sf::Sprite
+		fenceSprite,
+		groundSprite;
 
 public:	  // declaration of member functions	
 	Game(); // default constructor

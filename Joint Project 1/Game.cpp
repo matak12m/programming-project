@@ -70,7 +70,32 @@ void Game::loadContent()
 	}
 	myPlayer.sprite.setTexture(myPlayer.texture);
 	myPlayer.sprite.setTextureRect(sf::IntRect{ 0, 0, 48, 64 });
-	myPlayer.sprite.setPosition(200, 200);
+	myPlayer.sprite.setPosition(750, 700);
+
+	//setup background elements:
+	//fence
+
+	if (fenceTexture.loadFromFile("ASSETS/IMAGES/fence.png"))
+	{
+		std::cout << "error with background asset";
+	}
+	fenceTexture.setRepeated(true);
+	fenceSprite.setTexture(fenceTexture);
+	fenceSprite.setPosition(0, 600);
+	fenceSprite.setTextureRect(sf::IntRect{0, 0, 1500, 57 });
+
+	//ground
+
+	if (groundTexture.loadFromFile("ASSETS/IMAGES/ground.png"))
+	{
+		std::cout << "error with background asset";
+	}
+
+	groundTexture.setRepeated(true);
+	groundSprite.setTexture(groundTexture);
+	groundSprite.setPosition(0, 657);
+	groundSprite.setTextureRect(sf::IntRect{0,0, 1500, 175 });
+
 }
 
 
@@ -120,7 +145,8 @@ void Game::run()
 void Game::update()
 // This function takes the keyboard input and updates the game world
 {
-	// get keyboard input
+	// get keyboard inputs
+	//movement keypresses:
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		myPlayer.move();
@@ -147,6 +173,8 @@ void Game::draw()
 
 	m_message.setString("Game Play");
 	window.draw(m_message);  // write message to the screen
+	window.draw(groundSprite);
+	window.draw(fenceSprite);
 	window.draw(myPlayer.sprite);
 	window.display();
 }
