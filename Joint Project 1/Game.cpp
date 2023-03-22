@@ -36,6 +36,7 @@
 
 int main()
 {
+	Player myPlayer;
 	Game aGame;
 	aGame.loadContent();
 	aGame.run();
@@ -62,6 +63,14 @@ void Game::loadContent()
 	m_message.setFillColor(sf::Color::White); // set the text colour
 	m_message.setPosition(10, 10);  // its position on the screen
 
+	//set up player character
+	if (myPlayer.texture.loadFromFile("ASSETS/IMAGES/character.png"))
+	{
+		std::cout << "error with font file file";
+	}
+	myPlayer.sprite.setTexture(myPlayer.texture);
+	myPlayer.sprite.setTextureRect(sf::IntRect{ 0, 0, 48, 64 });
+	myPlayer.sprite.setPosition(200, 200);
 }
 
 
@@ -114,9 +123,16 @@ void Game::update()
 	// get keyboard input
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
+		myPlayer.move();
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-	{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+		myPlayer.move();
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+		myPlayer.move();
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+		myPlayer.move();
 	}
 
 	// update any game variables here ...
@@ -131,6 +147,6 @@ void Game::draw()
 
 	m_message.setString("Game Play");
 	window.draw(m_message);  // write message to the screen
-
+	window.draw(myPlayer.sprite);
 	window.display();
 }

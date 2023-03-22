@@ -12,7 +12,8 @@
 
 class Game
 {
-	// private data members
+	
+	Player myPlayer;// private data members
 
 	// put your game objects here eg player object and 
 	// array of enemy objects etc.
